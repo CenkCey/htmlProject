@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Orders</title>
+<link rel="icon" type="image/x-icon" href="./images/headerimg.jpg">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepet</title>
+    <style>
+        body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: LightGray;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #494E50;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: DodgerBlue;
+  color: white;
+}
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .cart-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item div {
+            flex: 1;
+            padding: 5px;
+        }
+
+        .cart-item:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        .checkout {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout:hover {
+            background-color: #007B9E;
+        }
+
+        #total {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="userloginpage.php">Home</a>
+  <a href="index.html"style="float: right;">Sign Out</a>
+  <a href="sepet.html" style="float: right;">Orders</a>
+</div><br><br><br><br><br>
+    <div class="container">
+        <h2>Orders</h2>
+        <ul class="cart-list" id="cart"></ul>
+
+        <button class="checkout" onclick="calculateTotal()">Check-out</button>
+        <div id="total"></div>
+        <a class="a" href="userloginpage.php">Get back to products</a>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const cartList = document.getElementById('cart');
+        renderCart();
+
+        function renderCart() {
+            cartList.innerHTML = '';
+            cart.forEach((product, index) => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('cart-item');
+                listItem.innerHTML = `
+                    <div>${product.name}</div>
+                    <div>Adet: ${product.quantity}</div>
+                    <div>Fiyat: ${product.price * product.quantity}₺</div>
+                    <button class="delete-btn" onclick="removeProduct(${index})">Sil</button>
+                `;
+                cartList.appendChild(listItem);
+            });
+        }
+
+        function removeProduct(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            cart.forEach(product => {
+                total += product.price * product.quantity;
+            });
+
+            const totalDiv = document.getElementById('total');
+            totalDiv.textContent = `Toplam Tutar: ${total.toFixed(2)}₺`;
+        }
+    </script>
+</body>
+</html>

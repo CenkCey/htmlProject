@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<title>Orders</title>
+<link rel="icon" type="image/x-icon" href="./images/headerimg.jpg">
+</head>
+<style>
+h1 {text-align: center;}
+form {text-align: center;}
+.quantity {
+  display: flex;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+body
+{
+background-color:gray;
+}
+div
+{
+text-align:center;
+color:white;
+}
+body 
+{
+background-color:gray;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+button
+
+{
+background-color: #04AA6D;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.active {
+  background-color: #04AA6D;
+}
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.quantity button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 30px;
+  height: auto;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.quantity button:hover {
+  background-color: #2980b9;
+}
+
+.input-box {
+  width: 15px;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Hide the number input spin buttons */
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-box[type="number"] {
+  -moz-appearance: textfield;
+}
+
+</style>
+<body>
+<ul>  
+  <div class="dropdown">
+  <button class="dropbtn">Everything about Hz.Ali</button>
+  <div class="dropdown-content">
+    <a href="lifetime.html">Lifetime</a>
+    <a href="sons.html">Sons of Ali</a>
+	<a href="orders.html">Purchase</a>
+  </div>
+</div>
+<li><a class="active" href="index.html">Home Page</a></li>
+  <li><a href="importantdays.html">Important Days</a></li>
+  <li><a href="contact.html">Contact us</a></li>
+  <li><a href="about.html">About</a></li>
+  <li style="float:right"><a href="signup.html">Sign Up</a></li>
+  <li style="float:right"><a href="signin.html">Sign In</a></li>
+</ul><br><br>
+<p id="sa" style="display:none">Successfull Added</p>
+<h1>Order Details</h1>
+<form>
+<img src="./images/tshirtforsale.jpg" alt="Trulli" width="150" height="150">
+<p><b>Product:</b> T-shirt</p> 
+<p><b>Size:</b> XL</p> 
+<p><b>Quantity:</b> </p>  
+<button class="minus" aria-label="Decrease">&minus;</button>
+<input type="number" class="input-box" value="1" min="1" max="10">
+<button class="plus" aria-label="Increase">&plus;</button>
+<p><b>Total Price:</b> $15</p> 
+</form>
+<p id="success" style="display:none">Successfly Added !!</p>
+
+<form name="form1" style="display:block" id="frm1" action="#">
+  <h1> User Information</h1>
+  <label for="lblname">Name: </label>
+  <input type="text" id="txtname" name="fname" required><br><br>
+  <label for="lblmail">E-mail Address: </label>
+  <input type="text" id="txtmail" name="lname" required><br><br>
+  <label for="lbladdress">Address: </label>
+  <input type="text" id="txtaddress" name="lname" required><br><br>
+  <label for="lblcity">City: </label>
+  <input type="text" id="txtcity" name="lname" required><br><br>
+  <label for="lblstreet">Street: </label>
+  <input type="text" id="txtstreet" name="lname" required><br><br>
+  <label for="lblcountry">Country: </label>
+  <input type="text" id="txtcountry" name="lname" required><br><br>
+  <textarea id="txtreview" name="w3review" rows="4" cols="50" required ></textarea>
+  <br>
+   <button onclick="SubBut()">Submit</button>  
+</form>
+<script>				
+function SubBut()
+{
+if(document.forms["form1"]["txtname"].value!="" && document.forms["form1"]["txtmail"].value!="" && document.forms["form1"]["txtaddress"].value!="" && document.forms["form1"]["txtcity"].value!="" && document.forms["form1"]["txtstreet"].value!="" && document.forms["form1"]["txtcountry"].value!="" && document.forms["form1"]["txtreview"].value!="")
+{
+alert("Successfully Added !!!");
+CleanAll();
+Clear();	
+}
+else
+{
+return;
+}
+
+}
+function CleanAll()
+{
+document.forms["form1"]["txtname"].value="";
+document.forms["form1"]["txtmail"].value="";
+document.forms["form1"]["txtaddress"].value="";
+document.forms["form1"]["txtcity"].value="";
+document.forms["form1"]["txtstreet"].value="";
+document.forms["form1"]["txtcountry"].value="";
+document.forms["form1"]["txtreview"].value="";
+}
+function Clear() {
+  document.getElementById("frm1").style.display = "none";
+  document.getElementById("success").style.display = "block";
+  
+}
+</script>
+  
+</body> 
+  
+</html> 
